@@ -1,0 +1,25 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+
+{% block title %}
+   Login Page
+{% endblock title %}
+   
+
+{% block content %}
+   
+
+<section class="form-container">
+
+        <form action="" method="POST">{% csrf_token %}
+           <h3>login now</h3>
+           <input type="email" name="email" required placeholder="Introduce tu gmail" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+           <input type="password" name="password" required placeholder="Introduce tu contraseña" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+           <input type="submit" value="login now" class="btn" name="submit">
+           <p>¿No tienes cuenta?</p>
+           <a href="{% url 'registration' %}" class="option-btn">Registrate ahora</a>
+        </form>
+     
+     </section>
+   {% endblock content %}

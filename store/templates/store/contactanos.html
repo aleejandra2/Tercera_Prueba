@@ -1,0 +1,29 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+
+{% block title %}
+   Contact Page
+{% endblock title %}
+   
+
+{% block content %}
+   
+
+<section class="contact">
+
+   <form action="" method="post">
+      <h3>Contactanos</h3>
+      <input type="text" name="name" placeholder="Introduce tu nombre" required maxlength="20" class="box">
+       <input type="email" name="email" placeholder="Introduce tu email" required maxlength="50" class="box">
+       <input type="number" name="number" min="0" max="9999999999" placeholder="Introduce tu numero" required onkeypress="if(this.value.length == 10) return false;" class="box">
+       <textarea name="msg" class="box" placeholder="Escribenos un mensaje" cols="30" rows="10"></textarea>
+       <input type="submit" value="Enviar mensaje" name="send" class="btn">
+      </form>
+ 
+ </section>
+ 
+ {% endblock content %}
+
+
+   

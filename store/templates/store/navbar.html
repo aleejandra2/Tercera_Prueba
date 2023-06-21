@@ -1,0 +1,46 @@
+<header class="header">
+
+    <section class="flex">
+         <a href="{% url 'store' %}" class="logo">Memories<span></span></a>
+         <nav class="navbar">
+            <a href="{% url 'store' %}">Inicio</a>
+            <a href="{% url 'about' %}">Sobre nosotros</a>
+            <a href="{% url 'order_detail' %}">Ordenes</a>
+            <a href="{% url 'shop' %}">Tienda</a>
+            <a href="{% url 'contact' %}">Contacto</a>
+         </nav>
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <a href="{% url 'search' %}"><i class="fas fa-search"></i></a>
+            
+            {% if request.user.is_authenticated %}
+               <a href="{% url 'wishlist' %}"><i class="fas fa-heart"></i><span>({{item_count}})</span></a>
+               <a href="{% url 'cartlist' %}"><i class="fas fa-shopping-cart"></i><span>({{cart_count}})</span></a>
+            {% else %}  
+            <a href="#"><i class="fas fa-heart"></i><span></span></a>       
+            <a href="#"><i class="fas fa-shopping-cart"></i><span></span></a>
+            {% endif %}
+            
+            <div id="user-btn" class="fas fa-user"></div>
+            <!-- <a href="#" class="fas fa-user" id="user-btn"></a> -->
+        </div>
+       
+       <div class="profile">
+          
+          {% if request.user.is_authenticated %}
+            <p>{{request.user}}</p>
+            <a href="{% url 'update_profile' %}" class="btn">Actualizar</a>
+            <a href="{% url 'logout' %}" class="delete-btn" onclick="return confirm('¿Quieres cerrar sesion?');">Cerrar Sesion</a> 
+            
+          {% else %}
+               <p>Por favor inicia sesion o Registrate!</p>
+               <div class="flex-btn">
+                  <a href="{% url 'registration' %}" class="option-btn">Registrarse</a>
+                  <a href="{% url 'login' %}" class="option-btn">Iniciar sesion</a>
+               </div>
+         {% endif %}
+         </div>
+         
+    </section>
+ </header> 
+   

@@ -1,0 +1,47 @@
+<!-- footer start -->
+<footer class="footer">
+
+    <section class="grid">
+ 
+       <div class="box">
+          <h3>Enlaces</h3>
+          <a href="{% url 'store' %}"> <i class="fas fa-angle-right"></i> Inicio </a>
+          <a href="{% url 'about' %}"> <i class="fas fa-angle-right"></i> Sobre nosotros </a>
+          <a href="{% url 'shop' %}"> <i class="fas fa-angle-right"></i> Tienda </a>
+          <a href="{% url 'contact' %}"> <i class="fas fa-angle-right"></i> Contacto </a>
+       </div>
+ 
+       <div class="box">
+          <h3> Enlaces</h3>
+          
+          {% if not request.user.is_authenticated  %}
+            <a href="{% url 'login' %}"> <i class="fas fa-angle-right"></i> Iniciar Sesion</a>
+            <a href="{% url 'registration' %}"> <i class="fas fa-angle-right"></i> Registrarse</a>
+          {% endif %}
+          <a href="{% url 'cartlist' %}"> <i class="fas fa-angle-right"></i> Carrito </a>
+          <a href="{% url 'order_detail' %}"> <i class="fas fa-angle-right"></i> Pedidos </a>
+       </div>
+ 
+       <div class="box">
+          <h3> Contactanos </h3>
+          <a href="tel:56975949797"><i class="fas fa-phone"></i> +56 9 7594 9797</a>
+          <a href="tel:56947750405"><i class="fas fa-phone"></i> +56 9 4775 0405</a>
+          <a href="mailto:memories@gmail.com"><i class="fas fa-envelope"></i> memories@gmail.com</a>
+          <a href="https://goo.gl/maps/ReMoiiUTxhDQNUmX8"><i class="fas fa-map-marker-alt"></i>Av. Vicuña Mackenna 4917, San Joaquín </a>
+       </div>
+ 
+       
+       <div class="box">
+          <h3> Síguenos </h3>
+          <a href="#"><i class="fab fa-facebook-f"></i>facebook</a>
+          <a href="#"><i class="fab fa-twitter"></i>twitter</a>
+          <a href="https://www.instagram.com/astralkunstt/"><i class="fab fa-instagram"></i>instagram</a>
+          <a href="#"><i class="fab fa-linkedin"></i>linkedin</a>
+       </div>
+ 
+    </section>>
+    <div class="credit">&copy; Copyright <?= date('Y'); ?> por <span>Tienda de Albums Memories S.A.</span> | Todos los derechos reservados!</div>
+ </footer>>   
+ <!-- footrt end -->
+ 
+ 
