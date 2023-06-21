@@ -8,7 +8,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 
 # Vista de la tienda de la página principal
-def storeView(request):
+def InicioView(request):
     products=Products.objects.all()
     categories=ProductCategory.objects.all()
     if request.user.is_authenticated:
@@ -20,7 +20,7 @@ def storeView(request):
     return render(request,'store/pagina_principal.html',context)
 
 # Para la tienda
-def shopView(request):
+def tiendaView(request):
     products=Products.objects.all()
     if request.user.is_authenticated:
         item_count=WishList.objects.filter(customer=request.user).count()
@@ -28,8 +28,7 @@ def shopView(request):
         context={'products':products,'item_count':item_count,'cart_count':cart_count}
     else:
         context={'products':products}    
-
-    return render(request,'store/shop.html',context)
+    return render(request,'store/tienda.html',context)
 
 # for category view
 def categoryView(request,id):
@@ -53,12 +52,12 @@ def LoginView(request):
             login(request,user)
             return redirect('store')
         else:
-            return HttpResponse('Invalid Credentials')    
+            return HttpResponse('Credenciales no válidas')    
     context={}
     return render(request,'store/user_login.html',context)
 
 # cerrar sesion 
-def LogoutView(request):
+def CerrarSesionView(request):
     logout(request)
     return redirect('store')
 
@@ -68,11 +67,11 @@ def RegistroView(request):
         if request.method == 'POST':
             form=RegistrationForm(request.POST)
             if User.objects.filter(email=request.POST['email']):
-                return HttpResponse('this email already used')
+                return HttpResponse('Este email ya esta en uso')
             if form.is_valid():
                 form.save()
                 # return  HttpResponse('user created successfully')
-                messages.success(request,'user created successfully')
+                messages.success(request,'Usuario creado correctamente')
                 return redirect('login')
         else:
             form=RegistrationForm()            
@@ -94,17 +93,17 @@ def UpdateProfileView(request):
                 new_password=request.POST['new_password']
                 user.set_password(new_password)
                 user.save()
-                messages.success(request,'Password Updated Successfully')
+                messages.success(request,'Contraseña actualizada correctamente') 
                 return redirect('login')
             else:
-                return HttpResponse('old password is wrong')    
+                return HttpResponse('La contraseña antigua es incorrecta')    
         else:
             email=request.user.email
             user=User.objects.get(email=email) 
             user.username=username
             user.save()
             # print(user.username)
-            messages.success(request,'Username Updated Successfully')
+            messages.success(request,'Usuario actualizado correctamente') 
             return redirect('store')   
     context={'cart_count':cart_count,'item_count':item_count}
     return render(request,'store/update_profile.html',context)
@@ -169,7 +168,7 @@ def AddWishListView(request):
         customer=request.user
         product_id=Products(request.POST['product_id'])
         if WishList.objects.filter(customer=customer,product_id=product_id):
-            messages.success(request,'Product already added')
+            messages.success(request,'Producto ya agregado')
             return redirect('store')
         else:
             wishlist=WishList.objects.create(customer=customer,product_id=product_id)
@@ -216,7 +215,7 @@ def AddCartView(request):
             cart_count=Cart.objects.filter(customer=customer).count()
             print(cart_count)
             context={'cart_count':cart_count}
-            messages.success(request,'Product Added to your Cart')
+            messages.success(request,'Producto añadido correctamente')
             return redirect('store')
     context={}
     return render(request,'store/navbar.html',context) 
@@ -334,5 +333,4 @@ def OrderView(request):
     return render(request,'store/order.html',context)
 
 def MSG(request):
-    messages.success(request,'hello sachin')
-    return render(request,'store/hello.html')    
+    messages.success(request,'Muchas gracias')  

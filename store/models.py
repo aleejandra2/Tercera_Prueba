@@ -1,6 +1,6 @@
-from doctest import FAIL_FAST
-from hashlib import blake2b
-from math import fabs
+# from doctest import FAIL_FAST
+# from hashlib import blake2b
+# from math import fabs
 from django.db import models
 from django.contrib.auth.models import User
 class ProductCategory(models.Model):
