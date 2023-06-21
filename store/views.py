@@ -8,7 +8,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 
 # Vista de la tienda de la página principal
-def InicioView(request):
+def Inicio(request):
     products=Products.objects.all()
     categories=ProductCategory.objects.all()
     if request.user.is_authenticated:
@@ -20,7 +20,7 @@ def InicioView(request):
     return render(request,'store/pagina_principal.html',context)
 
 # Para la tienda
-def tiendaView(request):
+def Tienda(request):
     products=Products.objects.all()
     if request.user.is_authenticated:
         item_count=WishList.objects.filter(customer=request.user).count()
@@ -31,7 +31,7 @@ def tiendaView(request):
     return render(request,'store/tienda.html',context)
 
 # for category view
-def categoryView(request,id):
+def Categoria(request,id):
     name=ProductCategory.objects.get(id=id).category
     products=Products.objects.filter(category=id)
     if request.user.is_authenticated:
@@ -40,10 +40,10 @@ def categoryView(request,id):
         context={'products':products,'name':name,'item_count':item_count,'cart_count':cart_count}
     else:
         context={'products':products,'name':name}    
-    return render(request,'store/category.html',context)
+    return render(request,'store/categorias.html',context)
 
 #Para el inicio sesion
-def LoginView(request):
+def Iniciosesion(request):
     if request.method == 'POST':
         username=User.objects.get(email=request.POST['email']).username
         password=request.POST['password']
@@ -54,15 +54,15 @@ def LoginView(request):
         else:
             return HttpResponse('Credenciales no válidas')    
     context={}
-    return render(request,'store/user_login.html',context)
+    return render(request,'store/iniciosession.html',context)
 
 # cerrar sesion 
-def CerrarSesionView(request):
+def CerrarSesion(request):
     logout(request)
     return redirect('store')
 
 # registrarse
-def RegistroView(request):
+def Registro(request):
     if request.user.is_authenticated==False:
         if request.method == 'POST':
             form=RegistrationForm(request.POST)
@@ -80,7 +80,7 @@ def RegistroView(request):
     else:
         return redirect('store')
 @login_required
-def UpdateProfileView(request):
+def ActualizarPerfil(request):
     cart_count=Cart.objects.filter(customer=request.user).count()
     item_count=WishList.objects.filter(customer=request.user).count()
     if request.method == 'POST':
@@ -106,10 +106,10 @@ def UpdateProfileView(request):
             messages.success(request,'Usuario actualizado correctamente') 
             return redirect('store')   
     context={'cart_count':cart_count,'item_count':item_count}
-    return render(request,'store/update_profile.html',context)
+    return render(request,'store/actualizarperfil.html',context)
 
 # nosotros
-def NosotrosView(request):
+def Nosotros(request):
     if request.user.is_authenticated:
         item_count=WishList.objects.filter(customer=request.user).count()
         cart_count=Cart.objects.filter(customer=request.user).count()
@@ -119,7 +119,7 @@ def NosotrosView(request):
     return render(request,'store/nosotros.html',context)    
 
 # contactanos
-def contactanosView(request):
+def Contactanos(request):
     if request.user.is_authenticated:
         item_count=WishList.objects.filter(customer=request.user).count()
         cart_count=Cart.objects.filter(customer=request.user).count()
@@ -129,7 +129,7 @@ def contactanosView(request):
     return render(request,'store/contactanos.html',context)   
 
 # vista rapida del producto
-def VistaRapidaView(request,id):
+def VistaRapida(request,id):
     product=Products.objects.get(id=id)
     if request.user.is_authenticated:
         item_count=WishList.objects.filter(customer=request.user).count()
@@ -140,7 +140,7 @@ def VistaRapidaView(request,id):
     return render(request,'store/vista_rapida.html',context)   
 
 # buscador
-def BuscadorView(request):
+def Buscador(request):
     if request.method == 'POST':
         name=request.POST['search_box']
         products=Products.objects.filter(name__icontains=name)
@@ -160,9 +160,9 @@ def BuscadorView(request):
     return render(request,'store/buscador.html',context)
 
 
-# for add item in wish list
+# AñadirWishList
 @login_required
-def AddWishListView(request):
+def AñadirWishList(request):
     
     if request.method == 'POST':
         customer=request.user
@@ -179,9 +179,9 @@ def AddWishListView(request):
     return render(request,'store/navbar.html',context) 
 
 
-# for show wish list items
+# ListaDeDeseos
 @login_required
-def WishListView(request):
+def ListaDeDeseos(request):
     products=WishList.objects.filter(customer=request.user)
     item_count=WishList.objects.filter(customer=request.user).count()
     cart_count=Cart.objects.filter(customer=request.user).count()
@@ -189,7 +189,7 @@ def WishListView(request):
     return render(request,'store/wishlist.html',context)    
 
 @login_required
-def DeleteFromWishList(request):
+def EliminarWishList(request):
     if request.method =='POST':
         if request.POST['delete']:
             product_id=request.POST['product_id']
@@ -201,14 +201,14 @@ def DeleteFromWishList(request):
 
 
 @login_required
-def AddCartView(request):
+def AñadirCarritoCompra(request):
     if request.method == 'POST':
         customer=request.user
         product_id=Products(request.POST['product_id'])
         quantity=request.POST['quantity']
         if Cart.objects.filter(customer=customer,product_id=product_id):
             # return HttpResponse('Product Already Added in Cart')
-            messages.info(request,'Product already added')
+            messages.info(request,'Producto añadido correctamente')
             return redirect('store')
         else:
             Cart.objects.create(customer=customer,product_id=product_id,quantity=quantity)
@@ -221,16 +221,16 @@ def AddCartView(request):
     return render(request,'store/navbar.html',context) 
 
 @login_required
-def CartListView(request):
+def CarritoDeCompras(request):
     products=Cart.objects.filter(customer=request.user)
     cart_count=Cart.objects.filter(customer=request.user).count()
     item_count=WishList.objects.filter(customer=request.user).count()
     grand_total= sum([item.quantity* item.product_id.price for item in products])
     context={'products':products,'cart_count':cart_count,'item_count':item_count,'grand_total':grand_total}
-    return render(request,'store/cart.html',context)
+    return render(request,'store/carritodecompras.html',context)
 
 @login_required
-def DeleteCartView(request):
+def EliminarCarritoCompra(request):
     if request.method == 'POST':
         customer=request.user
         if request.POST.get('delete'):
@@ -243,11 +243,11 @@ def DeleteCartView(request):
             products.delete()
             print(products)
             return redirect('cartlist')
-    return render(request,'store/cart.html')        
+    return render(request,'store/carritodecompras.html')        
 
 
 @login_required
-def UpdateQuantityView(request):
+def UpdateQuantity(request):
     if request.method == "POST":
         customer=request.user
         product_id=request.POST['product_id']
@@ -257,21 +257,21 @@ def UpdateQuantityView(request):
         product.save()
         return redirect('cartlist')
             
-    return render(request,'store/cart.html')           
+    return render(request,'store/carritodecompras.html')           
 
 
 @login_required
-def CheckoutView(request):
+def Pago(request):
     cart_count=Cart.objects.filter(customer=request.user).count()
     item_count=WishList.objects.filter(customer=request.user).count()
     products=Cart.objects.filter(customer=request.user)
     grand_total= sum([item.quantity* item.product_id.price for item in products])
     context={'grand_total':grand_total,'cart_count':cart_count,'item_count':item_count,'products':products}
-    return render(request,'store/checkout.html',context)
+    return render(request,'store/pago.html',context)
 
 
 @login_required
-def OrderPlaceView(request):
+def Pedidos(request):
     if request.method == 'POST':
         customer=request.user
         payment_mode=request.POST['method']
@@ -309,7 +309,7 @@ def OrderPlaceView(request):
     return render(request,'store/checkout.html',{})
 
 @login_required
-def OrderView(request):
+def Ordenes(request):
     cart_count=Cart.objects.filter(customer=request.user).count()
     item_count=WishList.objects.filter(customer=request.user).count()
     orders=Order.objects.filter(customer=request.user)
@@ -330,7 +330,7 @@ def OrderView(request):
         context={'order':order,'address':address,'shipped_address':shipped_address,'orders':orders,'total_price':total_price,'cart_count':cart_count,'item_count':item_count}
     else:
         context={'order':0,'cart_count':cart_count,'item_count':item_count}    
-    return render(request,'store/order.html',context)
+    return render(request,'store/pedidos.html',context)
 
 def MSG(request):
     messages.success(request,'Muchas gracias')  

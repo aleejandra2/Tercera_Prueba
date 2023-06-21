@@ -1,0 +1,90 @@
+
+{% extends 'store/main.html' %}
+{% load static %}   
+
+
+
+{% block title %}
+   Boucher de compra
+{% endblock title %}
+   
+{% block content %}
+   
+
+<section class="checkout-orders">
+
+   <form action="" method="POST">{% csrf_token %}
+
+      <h3> Sus pedidos</h3>
+      
+      <div class="display-orders">
+         
+         {% for product  in products %}
+            <p>{{product.product_id.name}} <span>(${{product.product_id.price}} x {{product.quantity}})</span> </p>
+         {% endfor %}
+         <input type="hidden" name="total_products" value="<?= $total_products; ?>">
+         <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
+         <div class="grand-total"> Total : <span>${{grand_total}}</span></div>
+      </div>
+
+      <h3> Introduzca sus datos</h3>
+
+      <div class="flex">
+         <div class="inputBox">
+            <span> Nombre :</span>
+            <input type="text" name="name" placeholder="Introduzca su nombre" class="box" maxlength="20" required>
+         </div>
+         <div class="inputBox">
+            <span> Número :</span>
+            <input type="number" name="mobile_no" placeholder="Introduzca su numero telefonico" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
+         </div>
+         <div class="inputBox">
+            <span> Email :</span>
+            <input type="email" name="email" placeholder="Introduzca su email" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span> Metodo de pago:</span>
+            <select name="method" class="box" required>
+               <option value="efectivo"> Efectivo</option>
+               <option value="tarjeta de credito"> Tarjeta de crédito</option>
+               <option value="tarjeta de debito"> Tarjeta de débito</option>
+               <option value="paypal"> Paypal</option>
+            </select>
+         </div>
+         <div class="inputBox">
+            <span> Direccion 01 :</span>
+            <input type="text" name="address1" placeholder="Ej. Sto Tomas" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span>Direccion 02 :</span>
+            <input type="text" name="address2" placeholder="Ej. Vicuña Mackenna" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span> Ciudad:</span>
+            <input type="text" name="city" placeholder="Ej. Stgo de Chile" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span> Comuna :</span>
+            <input type="text" name="state" placeholder="Ej. San Joaquín" class="box" maxlength="50" required>
+         </div>
+      </div>
+
+      <input type="submit" name="order" class="btn" value="Pagar" formaction="{% url 'order_place' %}">
+
+   </form>
+   
+</section>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+

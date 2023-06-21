@@ -1,30 +1,30 @@
 from re import L
 from django.urls import path
-from .views import InicioView,tiendaView,LoginView,RegistroView,NosotrosView,contactanosView,VistaRapidaView,CerrarSesionView,categoryView,BuscadorView,AddWishListView,WishListView,DeleteFromWishList,AddCartView,CartListView,DeleteCartView,UpdateQuantityView,UpdateProfileView,CheckoutView,OrderPlaceView,OrderView,MSG
+from .views import Inicio,Tienda,Iniciosesion,Registro,Nosotros,Contactanos,VistaRapida,CerrarSesion,Categoria,Buscador,AñadirWishList,ListaDeDeseos,EliminarWishList,AñadirCarritoCompra,CarritoDeCompras,EliminarCarritoCompra,UpdateQuantity,ActualizarPerfil,Pago,Pedidos,Ordenes,MSG
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('',InicioView,name='store'),
-    path('shop/',tiendaView,name='shop'),
-    path('login/',LoginView,name='login'),
-    path('registration/',RegistroView,name='registration'),
-    path('about/',NosotrosView,name='about'),
-    path('contact/',contactanosView,name='contact'),
-    path('quickview/<str:id>/',VistaRapidaView,name='quickview'),
-    path('logout/',CerrarSesionView,name='logout'),
-    path('category/<str:id>/',categoryView,name='category'),
-    path('search/',BuscadorView,name='search'),   
-    path('addwishlist/',AddWishListView,name='addwishlist'), 
-    path('wishlist/',WishListView,name='wishlist'),
-    path('delete_from_wishlist',DeleteFromWishList,name='delete_from_wishlist'),
-    path('addcart',AddCartView,name='addcart'),
-    path('cartlist/',CartListView,name='cartlist'),
-    path('delete_from_cart/',DeleteCartView,name='delete_from_cart'),
-    path('update_quantity',UpdateQuantityView,name='update_quantity'),
-    path('update_profile/',UpdateProfileView,name='update_profile'),
-    path('checkout/',CheckoutView,name='checkout'),
-    path('order_place/',OrderPlaceView,name='order_place'),
-    path('order_detail/',OrderView,name='order_detail'),
+    path('',Inicio,name='store'), #
+    path('shop/',Tienda,name='shop'), #
+    path('login/',Iniciosesion,name='login'), #
+    path('registration/',Registro,name='registration'), #
+    path('about/',Nosotros,name='about'), #
+    path('contact/',Contactanos,name='contact'), #
+    path('quickview/<str:id>/',VistaRapida,name='quickview'), #
+    path('logout/',CerrarSesion,name='logout'), #
+    path('category/<str:id>/',Categoria,name='category'),#
+    path('search/',Buscador,name='search'), #
+    path('addwishlist/',AñadirWishList,name='addwishlist'), 
+    path('wishlist/',ListaDeDeseos,name='wishlist'),
+    path('delete_from_wishlist',EliminarWishList,name='delete_from_wishlist'),
+    path('addcart',AñadirCarritoCompra,name='addcart'),
+    path('cartlist/',CarritoDeCompras,name='cartlist'),
+    path('delete_from_cart/',EliminarCarritoCompra,name='delete_from_cart'),
+    path('update_quantity',UpdateQuantity,name='update_quantity'),
+    path('update_profile/',ActualizarPerfil,name='update_profile'), #
+    path('checkout/',Pago,name='checkout'),
+    path('order_place/',Pedidos,name='order_place'),
+    path('order_detail/',Ordenes,name='order_detail'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

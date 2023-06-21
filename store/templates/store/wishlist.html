@@ -25,7 +25,7 @@
                 <img src="{{product.product_id.image_01.url}}" alt="">
                 <div class="name">{{product.product_id.name}}</div>
                 <div class="flex">
-                    <div class="price">${{product.product_id.price}}/-</div>
+                    <div class="price">${{product.product_id.price}}</div>
                     <input type="number" name="quantity" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
                 </div>
                 <input type="submit" value="Añadir al carro" class="btn" name="add_to_cart" formaction="{% url 'addcart' %}">
@@ -39,7 +39,7 @@
              </div> -->
             
             {% if item_count == 0 %}
-              <p class="empty">Tu lista de deseados esta vacia</p>
+              <p class="empty">Lista de deseados esta vacia</p>
             {% endif %}
                 
         </div>    
