@@ -9,4 +9,8 @@
 * `python manage.py makemigrations` 
 * `python manage.py migrate`
 * `python manage.py runserver`
+
+ ## De ser necesario crear un nuevo admin para ./admin
+
+* `python manage.py createsuperuser`
     
