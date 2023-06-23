@@ -16,8 +16,8 @@ class Products(models.Model):
     price = models.PositiveIntegerField(blank=False,null=False)
     details = models.TextField(blank=True)
     image_01 = models.ImageField()
-    image_02 = models.ImageField()
-    image_03 = models.ImageField()
+    # image_02 = models.ImageField()
+    # image_03 = models.ImageField()
 
     def __str__(self) -> str:
         return self.name

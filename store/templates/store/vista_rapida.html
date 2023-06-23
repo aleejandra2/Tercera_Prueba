@@ -21,8 +21,8 @@
                </div>
               <div class="sub-image">
                  <img src="{{product.image_01.url}}" alt="">
-                 <img src="{{product.image_02.url}}" alt="">
-                 <img src="{{product.image_03.url}}" alt="">
+                 <!-- <img src="{{product.image_02.url}}" alt="">
+                 <img src="{{product.image_03.url}}" alt=""> -->
                </div>
             </div>
             <div class="content">
@@ -34,7 +34,7 @@
               <div class="details">{{product.details}}</div>
               <div class="flex-btn">
                  <input type="submit" value="Añadir al carro" class="btn" name="add_to_cart" formaction="{% url 'addcart' %}">
-                 <input class="option-btn" type="submit" name="add_to_wishlist" value="add to wishlist" formaction="{% url 'addwishlist' %}">
+                 <input class="option-btn" type="submit" name="add_to_wishlist" value="Añadir a la lista de deseos" formaction="{% url 'addwishlist' %}">
               </div>
            </div>
         </div>
