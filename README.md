@@ -14,3 +14,7 @@
 
 * `python manage.py createsuperuser`
     
+ ## Credenciales Administrador.
+
+* diego
+* 123456

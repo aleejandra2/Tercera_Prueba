@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='order_status',
-            field=models.CharField(default='Pending', max_length=50),
+            field=models.CharField(default='Pagado', max_length=50),
         ),
         migrations.AddField(
             model_name='order',

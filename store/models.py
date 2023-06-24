@@ -45,7 +45,7 @@ class Cart(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=False)
     order_date = models.DateTimeField(auto_now_add=True)
-    order_status = models.CharField(max_length=50,default='Pending')
+    order_status = models.CharField(max_length=50,default='Pagado')
     payment_mode = models.CharField(max_length=50) 
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE,null=True,blank=False)
     quantity = models.PositiveIntegerField(default=0,null=False,blank=False)
