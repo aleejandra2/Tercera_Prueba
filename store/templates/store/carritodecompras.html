@@ -40,7 +40,7 @@
         <div class="cart-total">
             <form action="" method="POST">{% csrf_token %}
               <p>Total : <span>${{grand_total}}</span></p>
-              <a href="{% url 'shop' %}" class="option-btn">Continuar la compra</a>
+              <a href="{% url 'tienda' %}" class="option-btn">Continuar la compra</a>
                <input type="submit" value="Eliminar la compra" class="delete-btn" name="all_delete" formaction="{% url 'delete_from_cart' %}" onclick="return confirm('¿Quieres eliminar todo?');">
                <a href="{% url 'checkout' %}" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">Pagar</a>
             </form>

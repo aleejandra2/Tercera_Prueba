@@ -5,8 +5,8 @@
          <nav class="navbar">
             <a href="{% url 'store' %}">Inicio</a>
             <a href="{% url 'nosotros' %}">Sobre nosotros</a>
-            <a href="{% url 'order_detail' %}">Pedidos</a>
-            <a href="{% url 'shop' %}">Tienda</a>
+            <a href="{% url 'detalle_orden' %}">Pedidos</a>
+            <a href="{% url 'tienda' %}">Tienda</a>
             <a href="{% url 'contactos' %}">Contacto</a>
          </nav>
         <div class="icons">
@@ -15,7 +15,7 @@
             
             {% if request.user.is_authenticated %}
                <a href="{% url 'wishlist' %}"><i class="fas fa-heart"></i><span>({{item_count}})</span></a>
-               <a href="{% url 'cartlist' %}"><i class="fas fa-shopping-cart"></i><span>({{cart_count}})</span></a>
+               <a href="{% url 'lista_deseada' %}"><i class="fas fa-shopping-cart"></i><span>({{cart_count}})</span></a>
             {% else %}  
             <a href="#"><i class="fas fa-heart"></i><span></span></a>       
             <a href="#"><i class="fas fa-shopping-cart"></i><span></span></a>

@@ -7,7 +7,7 @@
           <h3>Enlaces</h3>
           <a href="{% url 'store' %}"> <i class="fas fa-angle-right"></i> Inicio </a>
           <a href="{% url 'nosotros' %}"> <i class="fas fa-angle-right"></i> Sobre nosotros </a>
-          <a href="{% url 'shop' %}"> <i class="fas fa-angle-right"></i> Tienda </a>
+          <a href="{% url 'tienda' %}"> <i class="fas fa-angle-right"></i> Tienda </a>
           <a href="{% url 'contactos' %}"> <i class="fas fa-angle-right"></i> Contacto </a>
        </div>
  
@@ -18,8 +18,8 @@
             <a href="{% url 'login' %}"> <i class="fas fa-angle-right"></i> Iniciar Sesion</a>
             <a href="{% url 'registration' %}"> <i class="fas fa-angle-right"></i> Registrarse</a>
           {% endif %}
-          <a href="{% url 'cartlist' %}"> <i class="fas fa-angle-right"></i> Carrito </a>
-          <a href="{% url 'order_detail' %}"> <i class="fas fa-angle-right"></i> Pedidos </a>
+          <a href="{% url 'lista_deseada' %}"> <i class="fas fa-angle-right"></i> Carrito </a>
+          <a href="{% url 'detalle_orden' %}"> <i class="fas fa-angle-right"></i> Pedidos </a>
        </div>
  
        <div class="box">

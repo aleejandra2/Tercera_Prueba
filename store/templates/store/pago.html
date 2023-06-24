@@ -22,13 +22,13 @@
          
          {% for product  in products %}
             s
-            <p> <img src="{{product.product_id.image_01.url}}" width="100" height="100" alt="" > {{product.product_id.name}} <span>(${{product.product_id.price}}/- x {{product.quantity}}) </span></p>
+            <p> <img src="{{product.product_id.image_01.url}}" width="100" height="100" alt="" > {{product.product_id.name}} <span>(${{product.product_id.price}} CLP x {{product.quantity}}) </span></p>
      
             
          {% endfor %}
          <input type="hidden" name="total_products" value="<?= $total_products; ?>">
          <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-         <div class="grand-total">Pedido total : <span>${{grand_total}}/-</span></div>
+         <div class="grand-total">Pedido total : <span>${{grand_total}} CLP</span></div>
       </div>
 
       <h3>Rellena con tus Datos</h3>

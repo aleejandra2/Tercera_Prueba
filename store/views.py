@@ -237,12 +237,12 @@ def EliminarCarritoCompra(request):
             product_id=request.POST['product_id']
             product=Cart.objects.get(customer=customer,product_id=product_id)
             product.delete()
-            return redirect('cartlist')
+            return redirect('lista_deseada')
         if request.POST.get('all_delete'):
             products=Cart.objects.filter(customer=customer)
             products.delete()
             print(products)
-            return redirect('cartlist')
+            return redirect('lista_deseada')
     return render(request,'store/carritodecompras.html')        
 
 
@@ -255,7 +255,7 @@ def UpdateQuantity(request):
         product=Cart.objects.get(customer=customer,product_id=product_id)
         product.quantity=quantity
         product.save()
-        return redirect('cartlist')
+        return redirect('lista_deseada')
             
     return render(request,'store/carritodecompras.html')           
 
@@ -303,8 +303,8 @@ def Pedidos(request):
                                 )
         items=Cart.objects.filter(customer=customer)
         items.delete()                        
-        messages.success(request,'Order Placed')
-        return redirect('order_detail')
+        messages.success(request,'Orden Recibida')
+        return redirect('detalle_orden')
     return render(request,'store/checkout.html',{})
 
 @login_required
