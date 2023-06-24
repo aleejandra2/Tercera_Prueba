@@ -5,7 +5,7 @@
 
 
 {% block title %}
-   Boucher de compra
+   Pagina de Validacion de Datos
 {% endblock title %}
    
 {% block content %}
@@ -15,61 +15,68 @@
 
    <form action="" method="POST">{% csrf_token %}
 
-      <h3> Sus pedidos</h3>
+      <h3>Tu</h3>
       
       <div class="display-orders">
          
+         
          {% for product  in products %}
-            <p>{{product.product_id.name}} <span>(${{product.product_id.price}} x {{product.quantity}})</span> </p>
+            s
+            <p> <img src="{{product.product_id.image_01.url}}" width="100" height="100" alt="" > {{product.product_id.name}} <span>(${{product.product_id.price}}/- x {{product.quantity}}) </span></p>
+     
+            
          {% endfor %}
          <input type="hidden" name="total_products" value="<?= $total_products; ?>">
          <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-         <div class="grand-total"> Total : <span>${{grand_total}}</span></div>
+         <div class="grand-total">Pedido total : <span>${{grand_total}}/-</span></div>
       </div>
 
-      <h3> Introduzca sus datos</h3>
+      <h3>Rellena con tus Datos</h3>
 
       <div class="flex">
          <div class="inputBox">
-            <span> Nombre :</span>
-            <input type="text" name="name" placeholder="Introduzca su nombre" class="box" maxlength="20" required>
+            <span>Nombre Completo :</span>
+            <input type="text" name="name" placeholder="Ingresa tu Nombre y Apellidos" class="box" maxlength="20" required>
          </div>
          <div class="inputBox">
-            <span> Número :</span>
-            <input type="number" name="mobile_no" placeholder="Introduzca su numero telefonico" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
+            <span>Numero Telefonico :</span>
+            <input type="number" name="mobile_no" placeholder="Ejemplo: +56947750402" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 12) return false;" required>
          </div>
          <div class="inputBox">
-            <span> Email :</span>
-            <input type="email" name="email" placeholder="Introduzca su email" class="box" maxlength="50" required>
+            <span>Correo Electronico :</span>
+            <input type="email" name="email" placeholder="Ejemplo: correo@correo.com" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span> Metodo de pago:</span>
+            <span>Metodo de Pago :</span>
             <select name="method" class="box" required>
-               <option value="efectivo"> Efectivo</option>
-               <option value="tarjeta de credito"> Tarjeta de crédito</option>
-               <option value="tarjeta de debito"> Tarjeta de débito</option>
-               <option value="paypal"> Paypal</option>
+               <option value="pago en efectivo">Pago en Efectivo</option>
+               <option value="tarjeta">Tarjeta de Debito/Credito</option>
             </select>
          </div>
          <div class="inputBox">
-            <span> Direccion 01 :</span>
-            <input type="text" name="address1" placeholder="Ej. Sto Tomas" class="box" maxlength="50" required>
+            <span>Direccion  1 :</span>
+            <input type="text" name="address1" placeholder="Ejemplo: Calle Libertador" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>Direccion 02 :</span>
-            <input type="text" name="address2" placeholder="Ej. Vicuña Mackenna" class="box" maxlength="50" required>
+            <span>Direccion 2  :</span>
+            <input type="text" name="address2" placeholder="Numero de casa/calle/depto/oficina " class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span> Ciudad:</span>
-            <input type="text" name="city" placeholder="Ej. Stgo de Chile" class="box" maxlength="50" required>
+            <span>Ciudad :</span>
+            <input type="text" name="city" placeholder="Ejemplo: Region Metropolitana" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span> Comuna :</span>
-            <input type="text" name="state" placeholder="Ej. San Joaquín" class="box" maxlength="50" required>
+            <span>Comuna :</span>
+            <input type="text" name="state" placeholder="Ejemplo: Las Condes" class="box" maxlength="50" required>
+         </div>
+        
+         <div class="inputBox">
+            <span>Codigo Postal :</span>
+            <input type="number" min="0" name="pincode" placeholder="Ejemplo: 2800000" min="0" max="9999999999" onkeypress="if(this.value.length == 6) return false;" class="box" required>
          </div>
       </div>
 
-      <input type="submit" name="order" class="btn" value="Pagar" formaction="{% url 'order_place' %}">
+      <input type="submit" name="order" class="btn" value="confirmar" formaction="{% url 'order_place' %}">
 
    </form>
    

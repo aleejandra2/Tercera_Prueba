@@ -283,7 +283,6 @@ def Pedidos(request):
         city=request.POST['city']
         state=request.POST['state']
         pincode=request.POST['pincode']
-        country=request.POST['country']
         ShippingAddress.objects.create(customer=customer,
                                        name=name,
                                        mobile_no=mobile_no,
@@ -293,7 +292,7 @@ def Pedidos(request):
                                        city=city,
                                        state=state,
                                        pincode=pincode,
-                                       country=country 
+                                       
                                       )
         products=Cart.objects.filter(customer=customer)
         for item in products:
@@ -321,9 +320,8 @@ def Ordenes(request):
                                 [str(address.address_line1),
                                 address.address_line2,
                                 address.city,
-                                address.state,
                                 str(address.pincode),
-                                address.country
+                                
                                 ]
                                 )
         total_price=sum([item.product_id.price * item.quantity  for item in orders])
