@@ -3,7 +3,7 @@
 
 
 {% block title %}
-   Contact Page
+   Pagina de contacto
 {% endblock title %}
    
 
@@ -12,7 +12,7 @@
 
 <section class="contact">
 
-   <form action="" method="post">
+   <form action="" method="POST"> {% csrf_token %}
       <h3>Contactanos</h3>
       <input type="text" name="name" placeholder="Introduce tu nombre" required maxlength="20" class="box">
        <input type="email" name="email" placeholder="Introduce tu email" required maxlength="50" class="box">
