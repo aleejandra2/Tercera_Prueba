@@ -50,11 +50,12 @@ def Iniciosesion(request):
         user=authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('store')
+            return redirect('tienda')
         else:
             return HttpResponse('Credenciales no válidas')    
     context={}
     return render(request,'store/iniciosession.html',context)
+
 
 # cerrar sesion 
 def CerrarSesion(request):
