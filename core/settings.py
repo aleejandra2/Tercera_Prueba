@@ -59,8 +59,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# DB en PhpMyAdmin (SQL)
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql', 
+#        'NAME': 'tienda',
+#        'USER': 'tienda123',
+#        'PASSWORD': 'tienda123progweb',
+#        'HOST': '172.111.10.119',   # IP REMOTA AL SERVIDOR
+#        'PORT': '3306',
+#    }
+#}
+
+
+
 
 DATABASES = {
     'default': {
