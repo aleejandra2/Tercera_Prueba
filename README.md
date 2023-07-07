@@ -18,3 +18,6 @@
 
 * diego
 * 123456
+
+ ## GitHub con el proyecto pero en un MySQL remoto
+https://github.com/DiegoRosales123/Examen-Final-SQL/
